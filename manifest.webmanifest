@@ -1,0 +1,14 @@
+{
+  "name": "The Certification Launchpad — Certification Exam Prep",
+  "short_name": "Launchpad",
+  "description": "Free, open-source IT & cybersecurity certification exam prep hub.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b1016",
+  "theme_color": "#0b1016",
+  "icons": [
+    { "src": "assets/img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
