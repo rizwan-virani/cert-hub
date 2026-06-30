@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Apply saved theme before first paint to avoid a flash (mirrors the exam sites). -->
+<script>(function(){try{var t=localStorage.getItem('certhub.theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The Certification Launchpad — a free, open-source home base for IT and cybersecurity certification prep by Professor Rizwan Virani, San Jacinto College. Get prepared, compare certifications, track your readiness across exams, and invest in your academic and career journey." />
+<title>The Certification Launchpad :: Certification Exam Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css?v=8" />
+<link rel="stylesheet" href="assets/css/hub.css?v=8" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#0b1016" />
+<link rel="apple-touch-icon" href="assets/img/icon.svg" />
+</head>
+<body>
+<div class="shell">
+
+  <!-- ===== Top bar (brand doubles as the Home link) ===== -->
+  <header class="topbar">
+    <a class="brand" id="homeBrand" href="#/" aria-label="The Certification Launchpad home">
+      <span class="mark">CL</span>
+      <span>
+        <b>certification <span style="color:var(--cyan)">launchpad</span></b>
+        <small>LAUNCH YOUR IT CAREER</small>
+      </span>
+    </a>
+    <nav class="hubnav" id="hubnav" aria-label="Section navigation">
+      <a href="#/" data-sec="explorer">Explorer</a>
+      <a href="#/readiness" data-sec="readiness">My Readiness</a>
+      <a href="#/how-to-study" data-sec="how">How to Study</a>
+      <a href="#/educators" data-sec="educators">For Educators</a>
+      <a href="#/faq" data-sec="faq">FAQ</a>
+    </nav>
+    <span class="spacer"></span>
+    <span class="pagetag" id="pageTag">DASHBOARD</span>
+  </header>
+
+  <!-- ===== Dashboard (everything that lives on the landing view) ===== -->
+  <div id="dashboard">
+
+    <section class="hero">
+      <h1>Get prepared. <span>Launch your career.</span></h1>
+      <p class="lede">
+        Welcome to the Certification Launchpad &mdash; a free, open-source home base for
+        <b>IT and cybersecurity certification</b> prep, from your very first A+ to specialist
+        security exams. Study with purpose, walk in exam-ready, and invest in your academic
+        journey and, ultimately, your career. Compare certifications, see where each one leads,
+        track your readiness across every exam in one place, and learn <em>how</em> to study,
+        not just <em>what</em> to study.
+      </p>
+      <p class="examline" id="heroStats">
+        <span>🎓 <b>free</b> &amp; open-source</span>
+        <span>❓ <b id="stQ">—</b> practice questions</span>
+        <span>🧪 <b id="stPbq">—</b> performance simulators</span>
+        <span>🗂 <b id="stLabs">—</b> hands-on labs</span>
+      </p>
+      <div class="herocta">
+        <a class="btn primary" href="#/" id="ctaExplore">Explore the certifications ↓</a>
+        <a class="btn ghost" href="#/how-to-study">New here? Start with how to study</a>
+      </div>
+    </section>
+
+    <div class="attrib"><span class="dot"></span> Authored &amp; designed by Professor Rizwan Virani · San Jacinto College</div>
+
+    <!-- ===== Cross-site readiness band (rendered live by hub.js) ===== -->
+    <section class="band readiness-band" id="readinessBand" aria-label="Your readiness across all exams">
+      <div class="band-head">
+        <h2>Your readiness, all in one place</h2>
+        <p class="muted">Each exam site tracks your progress privately in your browser. When you've
+          studied on any of them, your readiness shows up here automatically &mdash; no account, no sign-in.</p>
+      </div>
+      <div class="readiness-tools" id="readinessTools" hidden>
+        <span class="rt-label">Progress is saved only in this browser:</span>
+        <button class="btn ghost sm" id="rtBackup" type="button">⭳ Backup progress</button>
+        <button class="btn ghost sm" id="rtRestore" type="button">⭱ Restore from file</button>
+        <button class="btn ghost sm danger" id="rtClear" type="button">Clear all progress</button>
+        <input type="file" id="rtFile" accept="application/json,.json" hidden />
+      </div>
+      <div id="readinessGrid" class="readiness-grid"><!-- live tiles or empty state --></div>
+    </section>
+
+    <!-- ===== Certification Explorer (the centerpiece) ===== -->
+    <section class="band" id="explorer" aria-label="Certification Explorer">
+      <div class="band-head">
+        <h2>Certification Explorer</h2>
+        <p class="muted">Pick an exam to launch its full study platform. Not sure where to start?
+          Use the path picker or follow a track from the top.</p>
+      </div>
+
+      <div class="explorer-controls" id="explorerControls">
+        <button class="chip active" data-filter="all">All exams</button>
+        <button class="chip" data-filter="Foundations">Foundations</button>
+        <button class="chip" data-filter="Infrastructure">Infrastructure &amp; Ops</button>
+        <button class="chip" data-filter="Security">Cybersecurity</button>
+        <button class="chip" data-filter="Specialty">Specialty</button>
+        <input type="search" id="explorerSearch" class="search" placeholder="Search exams (name or code)…" aria-label="Search exams" />
+      </div>
+
+      <div id="launcherGrid" class="launcher-grid"><!-- launcher cards rendered by hub.js --></div>
+
+      <div class="pathway-cta">
+        <button class="btn ghost" id="openCatalog">Browse the full certification reference catalog →</button>
+      </div>
+    </section>
+
+    <!-- ===== What this is / is not ===== -->
+    <section class="band howto" id="about">
+      <h2>What this is &mdash; and what it isn't</h2>
+      <div class="isnot">
+        <div class="col is">
+          <h4>What this is</h4>
+          <ul>
+            <li>A free, open-source launchpad into self-paced study platforms covering every objective of each exam.</li>
+            <li>A way to <em>compare</em> certifications and see how they connect into a career path.</li>
+            <li>A private readiness tracker that pulls your progress from every site into one dashboard &mdash; all stored in your own browser.</li>
+          </ul>
+        </div>
+        <div class="col isnot-col">
+          <h4>What this is not</h4>
+          <ul>
+            <li>Not real or copyrighted exam questions, "brain dumps," or leaked items. All practice content is original.</li>
+            <li>Not an official product of and not affiliated with or endorsed by CompTIA, ISC2, or any certifying body.</li>
+            <li>Not a guarantee of a passing score. These are practice tools &mdash; the exams test judgment, not memorization.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="howto-notice"><b>Notice:</b> These platforms are optimized for desktop or laptop
+        computers running Google Chrome. Interactive elements &mdash; hands-on labs, terminal
+        simulations, and drag-and-drop activities &mdash; require a mouse and keyboard and may not
+        work correctly on mobile devices.</p>
+    </section>
+
+    <!-- ===== Why certifications matter ===== -->
+    <section class="band" id="why">
+      <div class="band-head">
+        <h2>Why certifications matter</h2>
+        <p class="muted">A certification is one of the highest-return investments you can make in your
+          academic journey &mdash; and, ultimately, your career. Here's what that investment buys you.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><h4>They open doors</h4><p>Certifications give hiring managers a trusted, standardized signal that you have the skills &mdash; often the difference between a résumé that gets read and one that doesn't. Many roles, and most DoD and contractor positions, <em>require</em> specific certs.</p></div>
+        <div class="why-card"><h4>They pay off</h4><p>Certified professionals frequently command higher salaries and faster advancement. Each exam page breaks down realistic salary ranges and the roles it unlocks.</p></div>
+        <div class="why-card"><h4>They give you a map</h4><p>For self-learners and career-changers, a certification path turns "I want to work in IT" into a concrete, step-by-step plan you can actually follow.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== You passed. Now what? (turn the cert into interviews) ===== -->
+    <section class="band" id="after">
+      <div class="band-head">
+        <h2>You passed. Now what?</h2>
+        <p class="muted">A passing score is only half the battle &mdash; here's how to turn it into interview invitations.</p>
+      </div>
+      <div class="faq">
+        <details class="faq-item"><summary>Claim your digital badge (Credly)</summary><div class="faq-body">CompTIA and ISC2 issue a verifiable digital badge through <b>Credly</b>. After you pass, watch for the email from Credly, accept the badge, and set your profile to public. The badge links to a verification page employers can trust &mdash; far stronger than just typing the cert name yourself.</div></details>
+        <details class="faq-item"><summary>Add it to your résumé &amp; LinkedIn the right way</summary><div class="faq-body">Use LinkedIn's <b>Licenses &amp; Certifications</b> section (not just your bio):<ol class="faq-steps"><li><b>Name:</b> the full title, e.g. “CompTIA Security+ ce”.</li><li><b>Issuing organization:</b> CompTIA (or ISC2).</li><li><b>Issue date</b> and <b>expiration</b> if applicable (CompTIA “ce” certs renew every 3 years).</li><li><b>Credential ID</b> and your <b>Credly badge URL</b>, so it displays as verified.</li></ol>On your résumé, add a Certifications line near the top: <em>CompTIA Security+ (SY0-701), 2026</em>.</div></details>
+        <details class="faq-item"><summary>Announce it to attract recruiters (copy this template)</summary><div class="faq-body">A short achievement post regularly surfaces to recruiters. Adapt and post:<div class="callout script"><p>"Excited to share that I just earned my <em>[Certification]</em>! Over the past few months I worked through [topics — e.g. network security, incident response, and hands-on labs]. Grateful to [program / instructor], and ready to put these skills to work. If your team is hiring for [target role], I'd love to connect. #[Certification] #CompTIA #CyberSecurity"</p></div>Attach your Credly badge image, and tag your school or instructor.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== How to study (the coaching section) ===== -->
+    <section class="band howto" id="how-to-study">
+      <h2>How to study with these platforms</h2>
+      <p class="muted">Every site is built around the same proven loop. Follow it on whichever exam you choose.</p>
+      <ol class="method">
+        <li><b>Read first.</b> Start with the domain reading sections to build the concepts. Don't drill questions cold &mdash; understand before you test.</li>
+        <li><b>Drill with rationale.</b> Practice questions explain <em>why</em> each option is right <em>and</em> why the others are wrong. Read every rationale, even when you're right.</li>
+        <li><b>Reinforce with flashcards.</b> Spaced-repetition cards resurface what you're forgetting and retire what you know. Grade yourself honestly.</li>
+        <li><b>Apply with PBQs.</b> Performance-based questions mirror the real exam's interactive items &mdash; firewalls, log triage, configuration, drag-and-drop. This is where knowledge becomes skill.</li>
+        <li><b>Get hands-on in the labs.</b> Sandbox labs give you a full-screen console with live commands and config panels. Flip each card to review the objectives, then launch and work through it.</li>
+        <li><b>Measure your readiness.</b> The performance dashboard and readiness summary show your mastery per domain. When your weak domains turn green and your mock scores clear the cut line, you're ready to schedule.</li>
+      </ol>
+      <div class="callout">
+        <b>How do I know I'm ready?</b> Aim for consistent mock-exam scores above the passing line,
+        no domain left in the "needs work" band, and a flashcard deck that's mostly "retired." Your
+        readiness summary on each site tracks all three.
+      </div>
+    </section>
+
+    <!-- ===== For educators & funding ===== -->
+    <section class="band educators" id="educators">
+      <div class="band-head">
+        <h2>For students &amp; educators: getting exam funding</h2>
+        <p class="muted">These platforms are free. The exams aren't &mdash; but you may not have to pay for them yourself.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><h4>Talk to your chair or program director</h4><p>Department chairs, program directors, and academic advisors often control or know about funds set aside for student certification vouchers. Ask directly &mdash; most students never do.</p></div>
+        <div class="why-card"><h4>Where the money comes from</h4><p>Common sources: Perkins/CTE funds, workforce grants (WIOA), student activity or foundation funds, employer tuition assistance, and veterans' education benefits.</p></div>
+        <div class="why-card"><h4>Bring this tool with you</h4><p>Faculty: this is a free, open, no-data-collection resource your students can use immediately. Point them here, and use the script below to start a funding conversation.</p></div>
+      </div>
+      <div class="callout script">
+        <b>A script you can copy:</b>
+        <p>"I'm preparing for the <em>[exam]</em> certification, and I'd like to sit the exam. Are there
+        department, Perkins/CTE, or foundation funds available to cover the exam voucher? If not, who
+        would you suggest I ask?"</p>
+      </div>
+      <div class="callout">
+        <b>Paying out of pocket? Get the academic discount.</b>
+        <p>Students with a valid <code>.edu</code> email or enrollment verification can buy CompTIA exam
+        vouchers at roughly <b>40–50% off</b> retail through the
+        <a href="https://academic-store.comptia.org/" target="_blank" rel="noopener noreferrer">CompTIA Academic Store</a>.
+        That can save you hundreds of dollars if institutional funds aren't available.</p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="band" id="faq">
+      <div class="band-head"><h2>Frequently asked questions</h2></div>
+      <div class="faq" id="faqList"></div>
+    </section>
+
+  </div>
+
+  <!-- ===== Workspace (swapped in for full-screen sub-views: catalog, cert detail, readiness) ===== -->
+  <div id="view" hidden></div>
+
+  <footer class="foot-credit">
+    <b style="color:var(--ink-dim)">The Certification Launchpad</b> &middot; A free, open-source home base for CompTIA and ISC2 certification exam prep.
+    Designed and authored by Professor Rizwan Virani, San Jacinto College.<br /><br />
+    This is a personal educational resource. All views, content, and materials presented here are entirely my own and do not represent the official positions, endorsements, or policies of San Jacinto College.<br /><br />
+    Not affiliated with, endorsed by, or sponsored by CompTIA, ISC2, or any other certifying body.
+    "CompTIA," "Security+," "Network+," "A+," and related marks are trademarks of CompTIA, Inc.; "ISC2"
+    and "Certified in Cybersecurity" are trademarks of ISC2. All trademarks are used only to identify the
+    exams these resources help you prepare for. All practice questions are original. Released for academic use.<br /><br />
+    These sites were designed and engineered with development assistance from Anthropic's Claude Opus 4.8 large language model.
+    <div class="legal-notice" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;line-height:1.7;color:var(--ink-dim)">
+      This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color:var(--cyan)">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.<br />
+      &copy; 2026 Rizwan Virani. Some rights reserved.
+    </div>
+  </footer>
+</div>
+
+<script src="assets/js/content/sites.js?v=8"></script>
+<script src="assets/js/content/certs.js?v=8"></script>
+<script src="assets/js/hub.js?v=8"></script>
+<script src="assets/js/backToTop.js?v=8"></script>
+</body>
+</html>
